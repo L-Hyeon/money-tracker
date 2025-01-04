@@ -20,7 +20,8 @@ const Header = () => {
 
   const changeTheme = () => {
     setDarkTheme(!darkTheme);
-    document.documentElement.style.setProperty('--main-color', darkTheme ? '#eee' : '#333');
+    document.documentElement.style.setProperty('--main-color', darkTheme ? '#fff' : '#333');
+    document.documentElement.style.setProperty('--invalid-color', darkTheme ? '#ccc' : '#000');
   };
 
   return (

@@ -2,24 +2,24 @@ import React from 'react';
 import { Inp } from './Input.style';
 
 type Props = {
-  type?: 'text' | 'password';
   name: string;
+  value: any;
+  onChange: any;
+  type?: 'text' | 'password';
   width?: string;
   height?: string;
   placeholder?: string;
-  value: any;
-  onChange: any;
   fontSize?: number;
 };
 
 const Input = ({
-  type = 'text',
   name,
+  value,
+  onChange,
+  type = 'text',
   width = 'auto',
   height = 'auto',
   placeholder = '',
-  value,
-  onChange,
   fontSize = 1,
 }: Props) => {
   return (

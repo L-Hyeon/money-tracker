@@ -7,7 +7,7 @@ type Props = {
   children: React.ReactNode;
 };
 
-const Text = ({ style, children, fontSize = 1 }: Props) => {
+const Text = ({ children, style, fontSize = 1 }: Props) => {
   return (
     <Txt style={style} fontSize={fontSize}>
       {children}
