@@ -10,7 +10,6 @@ const CalendarPage = () => {
   const changeMonth = (dir: boolean) => {
     let y = selDate.getFullYear(),
       m = selDate.getMonth();
-    console.log(y, m);
     if (dir) {
       if (m == 11) {
         y += 1;
@@ -26,7 +25,6 @@ const CalendarPage = () => {
         m -= 1;
       }
     }
-    console.log(new Date(y, m, 1));
     setSelDate(new Date(y, m, 1));
   };
 
@@ -34,6 +32,8 @@ const CalendarPage = () => {
     <main>
       <Flex align="center" gap="2dvw">
         <Button
+          width="50px"
+          height="50px"
           type="transparent"
           onClick={() => {
             changeMonth(false);
@@ -44,6 +44,8 @@ const CalendarPage = () => {
           {selDate.getFullYear()}년 {selDate.getMonth() + 1}월
         </Text>
         <Button
+          width="50px"
+          height="50px"
           type="transparent"
           onClick={() => {
             changeMonth(true);

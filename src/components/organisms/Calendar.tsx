@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Calendar = () => {
   const navigate = useNavigate();
-  const { selDate } = dataStore();
+  const { today, selDate } = dataStore();
   const [dateList, setDateList] = useState<number[][]>([]);
 
   useEffect(() => {
@@ -19,8 +19,14 @@ const Calendar = () => {
     navigate(`/detail/${selDate.getFullYear()}/${selDate.getMonth() + 1}/${date}`);
   };
 
+  const isToday = (date: number) => {
+    return (
+      today.getFullYear() === selDate.getFullYear() && today.getMonth() == selDate.getMonth() && today.getDate() == date
+    );
+  };
+
   return (
-    <section style={{ border: '0.5px solid var(--point-color)' }}>
+    <article style={{ border: '0.5px solid var(--point-color)' }}>
       <Flex align="center">
         {DAY_LIST.map(val => {
           return (
@@ -40,35 +46,38 @@ const Calendar = () => {
           );
         })}
       </Flex>
-      {dateList.map((item, idx) => (
-        <Flex key={`calendar-week_${idx}`}>
-          {item.map((day, i) => (
-            <CalendarElement
-              key={`calendar_day_${i}`}
-              onClick={() => {
-                if (day != -1) {
-                  moveToDetailPage(day);
-                }
-              }}
-              isActive={day !== -1}>
-              <Text
-                style={{
-                  width: '90%',
-                  textAlign: 'end',
-                  marginTop: '5%',
-                  color: i == 0 ? 'var(--red-color)' : 'var(--point-color)',
-                }}>
-                {day !== -1 ? day : ''}
-              </Text>
-            </CalendarElement>
-          ))}
-        </Flex>
-      ))}
-    </section>
+      <section key={`calendar_${selDate.getFullYear()}_${selDate.getMonth()}_${selDate.getDate()}`}>
+        {dateList.map((item, idx) => (
+          <Flex key={`calendar-week_${idx}`}>
+            {item.map((day, i) => (
+              <CalendarElement
+                key={`calendar_day_${i}`}
+                onClick={() => {
+                  if (day != -1) {
+                    moveToDetailPage(day);
+                  }
+                }}
+                isActive={day !== -1}
+                isToday={isToday(day)}>
+                <Text
+                  style={{
+                    width: '90%',
+                    textAlign: 'end',
+                    marginTop: '5%',
+                    color: i == 0 ? 'var(--red-color)' : isToday(day) ? 'var(--main-color)' : 'var(--point-color)',
+                  }}>
+                  {day !== -1 ? day : ''}
+                </Text>
+              </CalendarElement>
+            ))}
+          </Flex>
+        ))}
+      </section>
+    </article>
   );
 };
 
-const CalendarElement = styled.button<{ isActive: boolean }>`
+const CalendarElement = styled.button<{ isActive: boolean; isToday: boolean }>`
   cursor: ${props => (props.isActive ? 'pointer' : 'none')};
   box-sizing: content-box;
   padding: 0;
@@ -77,8 +86,8 @@ const CalendarElement = styled.button<{ isActive: boolean }>`
   height: 10dvh;
   display: flex;
   flex-direction: column;
-  background-color: ${props => (props.isActive ? 'transparent' : 'var(--invalid-color)')};
-  animation: fade-in;
+  background-color: ${props =>
+    props.isActive ? (props.isToday ? 'var(--point-color)' : 'transparent') : 'var(--invalid-color)'};
 `;
 
 export default Calendar;
