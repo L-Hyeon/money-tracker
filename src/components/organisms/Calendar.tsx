@@ -1,21 +1,28 @@
 import { useEffect, useState } from 'react';
-import useCalendar from '../../libs/hooks/useCalendar';
 import Text from '../atoms/Text';
-import Flex from '../atoms/Layout';
+import Flex from '../layouts/Layout';
 import styled from 'styled-components';
+import { dataStore } from '../../libs/store/DataStore';
+import { DAY_LIST, makeCalendarArray } from '../../libs/functions/Calendar';
+import { useNavigate } from 'react-router-dom';
 
 const Calendar = () => {
-  const calendar = useCalendar();
-  const [dateList, setDateList] = useState<number[][]>(calendar.weekCalendarList);
+  const navigate = useNavigate();
+  const { selDate } = dataStore();
+  const [dateList, setDateList] = useState<number[][]>([]);
 
   useEffect(() => {
-    setDateList(calendar.weekCalendarList);
-  }, [calendar.currentDate]);
+    setDateList(makeCalendarArray(selDate));
+  }, [selDate]);
+
+  const moveToDetailPage = (date: number) => {
+    navigate(`/detail/${selDate.getFullYear()}/${selDate.getMonth() + 1}/${date}`);
+  };
 
   return (
     <section style={{ border: '0.5px solid var(--point-color)' }}>
       <Flex align="center">
-        {calendar.DAY_LIST.map(val => {
+        {DAY_LIST.map(val => {
           return (
             <Flex
               key={`caldendar_day_${val}`}
@@ -36,8 +43,23 @@ const Calendar = () => {
       {dateList.map((item, idx) => (
         <Flex key={`calendar-week_${idx}`}>
           {item.map((day, i) => (
-            <CalendarElement key={`calendar_day_${i}`} isActive={day !== -1}>
-              <Text style={{ width: '90%', textAlign: 'end', marginTop: '5%' }}>{day !== -1 ? day : ''}</Text>
+            <CalendarElement
+              key={`calendar_day_${i}`}
+              onClick={() => {
+                if (day != -1) {
+                  moveToDetailPage(day);
+                }
+              }}
+              isActive={day !== -1}>
+              <Text
+                style={{
+                  width: '90%',
+                  textAlign: 'end',
+                  marginTop: '5%',
+                  color: i == 0 ? 'var(--red-color)' : 'var(--point-color)',
+                }}>
+                {day !== -1 ? day : ''}
+              </Text>
             </CalendarElement>
           ))}
         </Flex>
@@ -46,8 +68,10 @@ const Calendar = () => {
   );
 };
 
-const CalendarElement = styled.div<{ isActive: boolean }>`
+const CalendarElement = styled.button<{ isActive: boolean }>`
+  cursor: ${props => (props.isActive ? 'pointer' : 'none')};
   box-sizing: content-box;
+  padding: 0;
   border: 0.5px solid var(--point-color);
   width: 12dvw;
   height: 10dvh;

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import Text from '../atoms/Text';
-import Flex from '../atoms/Layout';
+import Flex from '../layouts/Layout';
 import { ColorResult } from 'react-color';
 import ToggleButton from '../atoms/ToggleButton';
 import ColorPicker from '../atoms/ColorPicker';
@@ -21,7 +21,7 @@ const Header = () => {
   const changeTheme = () => {
     setDarkTheme(!darkTheme);
     document.documentElement.style.setProperty('--main-color', darkTheme ? '#fff' : '#333');
-    document.documentElement.style.setProperty('--invalid-color', darkTheme ? '#ccc' : '#000');
+    document.documentElement.style.setProperty('--invalid-color', darkTheme ? '#e0e0e0' : '#2a2a2a');
   };
 
   return (

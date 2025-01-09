@@ -5,7 +5,7 @@ const DAY_OF_WEEK = 7;
 
 const useCalendar = () => {
   const [currentDate, setCurrentDate] = React.useState(new Date());
-  const daysInMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 0).getDate();
+  const daysInMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate();
 
   let prevDayList = Array.from({
     length: Math.max(0, currentDate.getDay() - 1),

@@ -1,21 +1,15 @@
 import { create } from 'zustand';
 
-interface UserInfo {
-  selYear: number;
-  selMonth: number;
+interface DataInfo {
+  selDate: Date;
 
-  setSelYear: (val: number) => void;
-  setSelMonth: (val: number) => void;
+  setSelDate: (date: Date) => void;
 }
 
-export const userStore = create<UserInfo>(set => ({
-  selYear: new Date().getFullYear(),
-  selMonth: new Date().getMonth(),
+export const dataStore = create<DataInfo>(set => ({
+  selDate: new Date(),
 
-  setSelYear: (val: number) => {
-    set({ selYear: val });
-  },
-  setSelMonth: (val: number) => {
-    set({ selMonth: val });
+  setSelDate: (date: Date) => {
+    set({ selDate: date });
   },
 }));

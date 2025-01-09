@@ -1,32 +1,33 @@
-import Flex from '../components/atoms/Layout';
+import Flex from '../components/layouts/Layout';
 import Button from '../components/atoms/Button';
 import Text from '../components/atoms/Text';
-import useCalendar from '../libs/hooks/useCalendar';
 import Calendar from '../components/organisms/Calendar';
+import { dataStore } from '../libs/store/DataStore';
 
 const CalendarPage = () => {
-  const calendar = useCalendar();
+  const { selDate, setSelDate } = dataStore();
 
   const changeMonth = (dir: boolean) => {
-    let y = calendar.currentDate.getFullYear(),
-      m = calendar.currentDate.getMonth(),
-      d = calendar.currentDate.getDate();
+    let y = selDate.getFullYear(),
+      m = selDate.getMonth();
+    console.log(y, m);
     if (dir) {
-      if (m == 12) {
+      if (m == 11) {
         y += 1;
-        m = 1;
+        m = 0;
       } else {
         m += 1;
       }
     } else {
-      if (m == 1) {
+      if (m == 0) {
         y -= 1;
-        m = 12;
+        m = 11;
       } else {
         m -= 1;
       }
     }
-    calendar.setCurrentDate(new Date(y, m, d));
+    console.log(new Date(y, m, 1));
+    setSelDate(new Date(y, m, 1));
   };
 
   return (
@@ -40,7 +41,7 @@ const CalendarPage = () => {
           〈
         </Button>
         <Text>
-          {calendar.currentDate.getFullYear()}년 {calendar.currentDate.getMonth() + 1}월
+          {selDate.getFullYear()}년 {selDate.getMonth() + 1}월
         </Text>
         <Button
           type="transparent"

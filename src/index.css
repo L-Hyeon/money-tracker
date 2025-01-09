@@ -17,7 +17,8 @@
   --font: 'KCC-Ganpan';
   --main-color: white;
   --point-color: #5272a4;
-  --invalid-color: #ccc;
+  --invalid-color: #e0e0e0;
+  --red-color: #d36456;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -124,6 +125,7 @@ video {
 
 html,
 body {
+  position: relative;
   margin: 0;
   width: 100dvw;
   height: 100dvh;
