@@ -242,6 +242,9 @@ textarea {
 }
 
 svg {
+  fill: var(--main-color);
+}
+svg::hover {
   fill: var(--point-color);
 }
 
