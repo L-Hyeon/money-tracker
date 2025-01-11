@@ -1,0 +1,14 @@
+.icon {
+  height: 50%;
+  top: 25%;
+  position: absolute;
+}
+.dropboxIcon {
+  transition: transform 250ms ease-out;
+  fill: var(--point-color);
+  right: 0;
+}
+.chkboxIcon {
+  fill: var(--main-color);
+  left: 0;
+}

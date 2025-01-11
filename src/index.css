@@ -5,13 +5,6 @@
   font-style: normal;
   font-display: fallback;
 }
-@font-face {
-  font-family: 'TheJamsil5Bold';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302_01@1.0/TheJamsil5Bold.woff2') format('woff2');
-  font-weight: 700;
-  font-style: normal;
-  font-display: fallback;
-}
 
 :root {
   --font: 'KCC-Ganpan';
@@ -19,6 +12,7 @@
   --point-color: #5272a4;
   --invalid-color: #e0e0e0;
   --red-color: #d36456;
+  --shadow-color: #00000026;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -112,9 +106,10 @@ video {
   font-family: var(--font);
   color: var(--point-color);
   font-size: 1rem;
-  vertical-align: baseline;
+  text-align: center;
+  vertical-align: middle;
   vertical-align: -webkit-baseline-middle;
-  vertical-align: -moz-middle-with-baseline;
+  vertical-align: -moz-middle-with-middle;
   box-sizing: border-box;
 }
 
@@ -239,13 +234,6 @@ textarea {
   overflow: auto;
   vertical-align: top;
   resize: vertical;
-}
-
-svg {
-  fill: var(--main-color);
-}
-svg::hover {
-  fill: var(--point-color);
 }
 
 div::-webkit-scrollbar {

@@ -1,4 +1,3 @@
-import React from 'react';
 import { Inp } from './Input.style';
 
 type Props = {

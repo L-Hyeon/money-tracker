@@ -60,8 +60,8 @@ const Calendar = () => {
                 isActive={day !== -1}
                 isToday={isToday(day)}>
                 <Text
+                  width="90%"
                   style={{
-                    width: '90%',
                     textAlign: 'end',
                     marginTop: '5%',
                     color: i == 0 ? 'var(--red-color)' : isToday(day) ? 'var(--main-color)' : 'var(--point-color)',
