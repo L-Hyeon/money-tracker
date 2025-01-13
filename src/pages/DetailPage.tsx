@@ -6,7 +6,8 @@ import Text from '../components/atoms/Text';
 import Button from '../components/atoms/Button';
 import RecordList from '../components/organisms/RecordList';
 import DropBox from '../components/atoms/DropDown';
-import { Record } from '../libs/types/Record';
+import { CATEGORIES, Record, RECORD_TYPES } from '../libs/types/Record';
+import Input from '../components/atoms/Input';
 
 const DetailPage = () => {
   const { year, month, date } = useParams();
@@ -15,11 +16,9 @@ const DetailPage = () => {
     id: -1,
     type: 0,
     category: 0,
-    value: 0,
+    value: '',
     memo: '',
   });
-
-  const RECORD_TYPES = ['수입', '지출'];
 
   useEffect(() => {
     console.log(year, Number(month) - 1, date);
@@ -40,12 +39,30 @@ const DetailPage = () => {
       type: idx,
     });
   };
+  const changeRecordValue = (e: BaseSyntheticEvent) => {
+    setRecord({
+      ...record,
+      value: e.target.value,
+    });
+  };
+  const setCategory = (idx: number) => {
+    setRecord({
+      ...record,
+      category: idx,
+    });
+  };
+  const changeRecordMemo = (e: BaseSyntheticEvent) => {
+    setRecord({
+      ...record,
+      memo: e.target.value,
+    });
+  };
 
   return (
     <main>
       <Flex
         style={{ boxShadow: '0 4px 5px 0 var(--shadow-color)', borderRadius: '20px', padding: '30px' }}
-        width="40%"
+        width="80%"
         direction="column"
         gap="20px">
         <Text width="100%" style={{ textAlign: 'left' }}>
@@ -53,7 +70,18 @@ const DetailPage = () => {
         </Text>
         <Flex width="100%" align="space-between">
           <DropBox value={record.type} onClick={setRecordType} list={RECORD_TYPES} />
-          <Text>Value Input</Text>
+          <Input
+            type="number"
+            name="record_value"
+            value={record.value}
+            onChange={changeRecordValue}
+            align="right"
+            width="30%"
+          />
+        </Flex>
+        <Flex width="100%" align="space-between">
+          <DropBox value={record.category} onClick={setCategory} list={CATEGORIES[record.type]} />
+          <Input name="record_value" value={record.memo} onChange={changeRecordMemo} align="right" width="70%" />
         </Flex>
         <Button onClick={addRecord}>추가</Button>
       </Flex>

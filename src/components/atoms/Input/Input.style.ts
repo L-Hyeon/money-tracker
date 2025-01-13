@@ -1,10 +1,12 @@
 import styled from 'styled-components';
 
 export const Inp = styled.input<{
+  align: string;
   width: string;
   height: string;
   fontSize: number;
 }>`
+  text-align: ${props => props.align};
   width: ${props => props.width};
   height: ${props => props.height};
   padding: 10px;

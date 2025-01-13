@@ -1,7 +1,5 @@
 import { useState } from 'react';
 import DropDownIcon from '../../../assets/icons/dropdown.svg?react';
-import CheckBox from '../../../assets/icons/checkbox.svg?react';
-import CheckedBox from '../../../assets/icons/checkedbox.svg?react';
 import CheckIcon from '../../../assets/icons/check.svg?react';
 import styled from 'styled-components';
 import Text from '../Text';
