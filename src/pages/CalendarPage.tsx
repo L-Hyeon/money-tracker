@@ -4,8 +4,6 @@ import Text from '../components/atoms/Text';
 import Calendar from '../components/organisms/Calendar';
 import { dataStore } from '../libs/store/DataStore';
 
-import Undo from '../assets/icons/undo.svg?react';
-
 const CalendarPage = () => {
   const { today, selDate, setSelDate } = dataStore();
 
