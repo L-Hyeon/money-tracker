@@ -180,7 +180,6 @@ footer {
   padding-right: 20px;
 }
 section {
-  transition: opacity 300ms linear;
   animation: _fadeIn 300ms;
   -moz-animation: _fadeIn 300ms; /* Firefox */
   -webkit-animation: _fadeIn 300ms; /* Safari and Chrome */
