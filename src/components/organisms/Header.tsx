@@ -26,7 +26,7 @@ const Header = () => {
 
   return (
     <header>
-      <Text fontSize={1.5}>가계부</Text>
+      <Text fontSize={1.5}>A&S</Text>
       <Flex width="120px" gap="10px">
         <ColorPicker color={pointColor} onChange={changeColor} />
         <ToggleButton isActive={darkTheme} onToggle={changeTheme} />
