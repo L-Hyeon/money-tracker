@@ -5,7 +5,7 @@ type Props = {
   name: string;
   value: any;
   onChange: (e: BaseSyntheticEvent) => void;
-  type?: 'text' | 'password' | 'number';
+  type?: 'text' | 'password';
   align?: 'left' | 'right';
   width?: string;
   height?: string;

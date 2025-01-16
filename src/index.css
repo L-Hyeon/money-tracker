@@ -136,15 +136,15 @@ body::-webkit-scrollbar {
 main {
   width: 100dvw;
   height: calc(100dvh - 120px);
-  box-sizing: border-box;
   background-color: var(--main-color);
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   gap: 2dvw;
+  padding-top: 5dvw;
 }
 main::-webkit-scrollbar {
   display: none;
